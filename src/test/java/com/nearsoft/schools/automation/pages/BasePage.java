@@ -1,21 +1,29 @@
 package com.nearsoft.schools.automation.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public abstract class BasePage {
     private WebDriver driver;
+    private Actions actions;
 
     protected BasePage(WebDriver driver) {
         this.driver = driver;
+        this.actions = new Actions(driver);
     }
 
     protected WebDriver getDriver() {
         return driver;
+    }
+
+    protected Actions getActions() {
+        return actions;
     }
 
     protected WebElement findElement(By locator) {
@@ -34,11 +42,25 @@ public abstract class BasePage {
         findElement(locator).sendKeys(inputText);
     }
 
+    protected String getText(By locator) {
+        return findElement(locator).getText();
+    }
+
     protected boolean isElementDisplayed(By locator) {
-        try {
-            return driver.findElement(locator).isDisplayed();
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
+        return isElementDisplayed(locator, 0);
+    }
+
+    protected boolean isElementDisplayed(By locator, int timeoutInSeconds) {
+        WebElement element = new WebDriverWait(getDriver(), timeoutInSeconds)
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return element != null;
+    }
+
+    protected String getTabTitle() {
+        return getDriver().getTitle();
+    }
+
+    protected void hover(By locator) {
+        getActions().moveToElement(findElement(locator)).perform();
     }
 }

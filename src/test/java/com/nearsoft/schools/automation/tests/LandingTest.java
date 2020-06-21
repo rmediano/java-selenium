@@ -1,23 +1,29 @@
 package com.nearsoft.schools.automation.tests;
 
-import org.junit.Test;
-import org.junit.Assert;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class LandingTest extends BaseTest {
 
     @Test
-    public void navigatingToMainPage() {
-        // Navigate to Main Page
-        getDriver().get("http://automationpractice.com");
-
+    public void Landing_UserNavigatesToMainPage() {
         // Check Logo is displayed
-        Assert.assertTrue("Logo is displayed.", landingPage.isLogoDisplayed());
+        Assert.assertTrue(landingPage.isLogoDisplayed(), "Logo is displayed.");
 
         // Check Search Box is displayed
-        Assert.assertTrue("Search Box is Displayed.", landingPage.isLogoDisplayed());
+        Assert.assertTrue(landingPage.isLogoDisplayed(), "Search Box is Displayed.");
 
         // Check Cart Preview is displayed
-        Assert.assertTrue("Cart Preview is displayed.", landingPage.isCartPreviewDisplayed());
+        Assert.assertTrue(landingPage.isCartPreviewDisplayed(), "Cart Preview is displayed.");
+    }
+
+    @Test
+    public void Landing_HoveringOverTopMenuDisplaysSubmenu() {
+        // Mouse over Woman button
+        landingPage.hoverMenuButton("Women");
+
+        // Check Woman submenu is displayed
+        Assert.assertTrue(landingPage.isSubmenuDisplayed("Women"), "Woman submenu is displayed after hovering Woman button.");
     }
 
 }

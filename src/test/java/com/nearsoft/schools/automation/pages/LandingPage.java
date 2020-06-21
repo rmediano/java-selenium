@@ -1,6 +1,5 @@
 package com.nearsoft.schools.automation.pages;
 
-import com.nearsoft.schools.automation.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -26,5 +25,13 @@ public class LandingPage extends BasePage {
 
     public boolean isCartPreviewDisplayed() {
         return isElementDisplayed(cartPreviewBy);
+    }
+
+    public void hoverMenuButton(String menuTitle) {
+        hover(By.cssSelector("#block_top_menu a[title=" + menuTitle + "]"));
+    }
+
+    public boolean isSubmenuDisplayed(String menuTitle) {
+        return isElementDisplayed(By.cssSelector("#block_top_menu a[title=" + menuTitle + "] + ul"), 1);
     }
 }
