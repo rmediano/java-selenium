@@ -2,6 +2,8 @@ package com.nearsoft.schools.automation.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LandingPage extends BasePage {
 
@@ -33,5 +35,11 @@ public class LandingPage extends BasePage {
 
     public boolean isSubmenuDisplayed(String menuTitle) {
         return isElementDisplayed(By.cssSelector("#block_top_menu a[title=" + menuTitle + "] + ul"), 1);
+    }
+
+    public void selectFromMenu(String menuTitle) {
+        click(By.cssSelector("#block_top_menu > ul > li > a[title=" + menuTitle + "]"));
+        WebDriverWait wait = new WebDriverWait(getDriver(), 5000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".category-name")));
     }
 }
