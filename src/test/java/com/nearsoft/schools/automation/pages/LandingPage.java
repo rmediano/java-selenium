@@ -34,7 +34,7 @@ public class LandingPage extends BasePage {
     }
 
     public boolean isSubmenuDisplayed(String menuTitle) {
-        return isElementDisplayed(By.cssSelector("#block_top_menu a[title=" + menuTitle + "] + ul"), 1);
+        return isElementDisplayed(By.cssSelector("#block_top_menu a[title=" + menuTitle + "] + ul"));
     }
 
     public void selectFromMenu(String menuTitle) {
