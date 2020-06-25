@@ -1,6 +1,6 @@
 package com.nearsoft.schools.automation.tests;
 
-import com.nearsoft.schools.automation.framework.DriverHandler;
+import com.nearsoft.schools.automation.framework.DriversController;
 import com.nearsoft.schools.automation.pages.DressesPage;
 import com.nearsoft.schools.automation.pages.LandingPage;
 import com.nearsoft.schools.automation.pages.SearchPage;
@@ -11,12 +11,14 @@ import org.testng.annotations.*;
 
 public abstract class BaseTest {
 
+    protected int webDriverId;
     protected LandingPage landingPage;
     protected SearchPage searchPage;
     protected DressesPage dressesPage;
     protected TshirtsPage tshirtsPage;
 
     protected BaseTest() {
+        webDriverId = DriversController.getInstance().getDriverId();
         landingPage = new LandingPage(getDriver());
         searchPage = new SearchPage(getDriver());
         dressesPage = new DressesPage(getDriver(), new CommonFilterBehaviorImpl(getDriver()));
@@ -24,25 +26,25 @@ public abstract class BaseTest {
     }
 
     private WebDriver getDriver() {
-        return DriverHandler.getWebDriver();
+        return DriversController.getInstance().getDriver(webDriverId);
     }
 
-    @BeforeSuite
-    public static void setupSuite() {
+    @AfterClass(groups = {"Filters", "Landing", "Smoke"})
+    public void setupSuite() {
         // Code to setup automation suite here
     }
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"Filters", "Landing", "Smoke"})
     public void setupTest() {
-        DriverHandler.getWebDriver().get("http://automationpractice.com/");
+        DriversController.getInstance().getDriver(webDriverId).get("http://automationpractice.com/");
     }
-    @AfterMethod
+    @AfterMethod(groups = {"Filters", "Landing", "Smoke"})
     public void teardownTest() {
-        DriverHandler.clearWebDriver();
+        DriversController.getInstance().clearWebDriver(webDriverId);
     }
 
-    @AfterSuite
-    public static void teardownSuite() {
-        DriverHandler.teardownWebDriver();
+    @AfterClass(groups = {"Filters", "Landing", "Smoke"})
+    public void teardownSuite() {
+        DriversController.getInstance().teardownWebDriver(webDriverId);
     }
 }

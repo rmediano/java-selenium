@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class SearchTest extends BaseTest {
 
-    @Test
+    @Test(groups = {"Search", "Smoke"})
     public void Search_UserSearchesWithEmptyCriteria() {
         // Click on the search button
         searchPage.search("");
@@ -16,7 +16,7 @@ public class SearchTest extends BaseTest {
         Assert.assertEquals(searchPage.getAlertMessage(),"Please enter a search keyword","'Please enter a search keyword' alert message is displayed");
     }
 
-    @Test
+    @Test(groups = {"Search"})
     public void Search_UserSearchesUsingAValidKeyword() {
         // Search a valid keyword in the search box
         searchPage.search("Blouse");

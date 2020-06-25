@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class LandingTest extends BaseTest {
 
-    @Test
+    @Test(groups = {"Landing", "Smoke"})
     public void Landing_UserNavigatesToMainPage() {
         // Check Logo is displayed
         Assert.assertTrue(landingPage.isLogoDisplayed(), "Logo is displayed.");
@@ -17,7 +17,7 @@ public class LandingTest extends BaseTest {
         Assert.assertTrue(landingPage.isCartPreviewDisplayed(), "Cart Preview is displayed.");
     }
 
-    @Test
+    @Test(groups = {"Landing"})
     public void Landing_HoveringOverTopMenuDisplaysSubmenu() {
         // Mouse over Woman button
         landingPage.hoverMenuButton("Women");
