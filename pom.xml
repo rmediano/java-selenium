@@ -30,8 +30,8 @@
                 <version>2.22.2</version>
                 <configuration>
                     <!-- Parallel execution / Using SUREFIRE -->
-                    <!--parallel>classes</parallel>
-                    <threadCount>3</threadCount-->
+                    <parallel>classes</parallel>
+                    <threadCount>3</threadCount>
                     <!-- Parallel execution / Using TestNG -->
                     <!--suiteXmlFiles>
                         <suiteXmlFile>${testng.folder}ParallelTests.xml</suiteXmlFile>
