@@ -5,17 +5,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public abstract class BasePage {
     private WebDriver driver;
+    private WebDriverWait webDriverWait;
     private Actions actions;
 
     protected BasePage(WebDriver driver) {
         this.driver = driver;
+        this.webDriverWait = new WebDriverWait(driver, 30);
         this.actions = new Actions(driver);
     }
 
@@ -28,10 +29,12 @@ public abstract class BasePage {
     }
 
     protected WebElement findElement(By locator) {
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
         return getDriver().findElement(locator);
     }
 
     protected List<WebElement> findElements(By locator) {
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
         return getDriver().findElements(locator);
     }
 
@@ -48,13 +51,8 @@ public abstract class BasePage {
     }
 
     protected boolean isElementDisplayed(By locator) {
-        return isElementDisplayed(locator, 0);
-    }
-
-    protected boolean isElementDisplayed(By locator, int timeoutInSeconds) {
-        WebElement element = new WebDriverWait(getDriver(), timeoutInSeconds)
-                .until(ExpectedConditions.visibilityOfElementLocated(locator));
-        return element != null;
+        WebElement element = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        return element.isDisplayed();
     }
 
     protected String getTabTitle() {
