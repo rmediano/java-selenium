@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+@Deprecated
 public class DriverHandler {
     private static WebDriver driver;
     public static WebDriver getWebDriver() {

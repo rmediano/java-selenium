@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 public class FiltersTests extends BaseTest {
 
-    @Test
+    @Test(groups = {"Filters", "Smoke"})
     public void Filters_UserCanFilterInDressesPage() {
         // Navigate to Dresses page
         landingPage.selectFromMenu("Dresses");
@@ -16,7 +16,7 @@ public class FiltersTests extends BaseTest {
         // code to validate
     }
 
-    @Test
+    @Test(groups = {"Filters"})
     public void Filters_UserCanFilterInTshirtsPage() {
         // Navigate to Dresses page
         landingPage.selectFromMenu("T-shirts");
