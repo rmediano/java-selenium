@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="ParallelTests" verbose="10" parallel="tests" thread-count="3">
-    <test name="Filters" preserve-order="true">
+<suite name="GroupTests" verbose="10" parallel="tests" thread-count="3">
+    <test name="Smoke" preserve-order="true">
+        <groups>
+            <run>
+                <include name="Smoke"/>
+            </run>
+        </groups>
         <classes>
             <class name="com.nearsoft.schools.automation.tests.FiltersTests"/>
-        </classes>
-    </test>
-    <test name="Landing" preserve-order="true">
-        <classes>
             <class name="com.nearsoft.schools.automation.tests.LandingTest"/>
-        </classes>
-    </test>
-    <test name="Search" preserve-order="true">
-        <classes>
             <class name="com.nearsoft.schools.automation.tests.SearchTest"/>
         </classes>
     </test>

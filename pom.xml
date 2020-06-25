@@ -10,6 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <testng.folder>src/test/java/com/nearsoft/schools/automation/tests/</testng.folder>
     </properties>
 
     <build>
@@ -28,8 +29,17 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-                    <parallel>classes</parallel>
-                    <threadCount>3</threadCount>
+                    <!-- Parallel execution / Using SUREFIRE -->
+                    <!--parallel>classes</parallel>
+                    <threadCount>3</threadCount-->
+                    <!-- Parallel execution / Using TestNG -->
+                    <!--suiteXmlFiles>
+                        <suiteXmlFile>${testng.folder}ParallelTests.xml</suiteXmlFile>
+                    </suiteXmlFiles-->
+                    <!-- Group execution / Using TestNG -->
+                    <!--suiteXmlFiles>
+                        <suiteXmlFile>${testng.folder}GroupTests.xml</suiteXmlFile>
+                    </suiteXmlFiles-->
                 </configuration>
             </plugin>
         </plugins>
